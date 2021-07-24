@@ -4,9 +4,28 @@ This package has helpers for AWS EC2.
 
 ## Init
 
+### Config
+
+#### `epel`
+
+- `enable` contains:
+  - Command > `amazonLinuxExtras` > `install` `epel` `epel-release`
+
+#### `cloudwatch`
+
+- `agent` contains:
+  - Install CloudWatch agent.
+  - File > `cloudwatch` > `config`
+  - Enable CloudWatch agent.
+
+#### `swap`
+
+- `generate` contains:
+  - Command > `swap` > `generate`
+
 ### Command
 
-#### `amazon-linux-extras`
+#### `amazonLinuxExtras`
 
 - `enable`: Enable Amazon Linux 2 package.
 - `install`: Install Amazon Linux 2 package.
@@ -19,4 +38,4 @@ This package has helpers for AWS EC2.
 
 #### `cloudwatch`
 
-- `agent`: Create CloudWatch agent config.
+- `config`: Create CloudWatch agent config.
