@@ -1,7 +1,7 @@
 module.exports = {
     testEnvironment: 'node',
     roots: [
-        '<rootDir>/dist/test', // Use lib for npm package.
+        '<rootDir>/lib/test',
     ],
     testMatch: [
         '**/*.test.js',
