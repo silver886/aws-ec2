@@ -3,10 +3,17 @@
         "**/node_modules/": true
     },
     "cSpell.words": [
+        "centos",
         "fallocate",
         "leasot",
         "mkswap",
+        "redhat",
         "repos",
         "swapon"
-    ]
+    ],
+    "markdownlint.config": {
+        "MD024": {
+            "siblings_only": true
+        }
+    }
 }

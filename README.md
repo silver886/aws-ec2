@@ -14,3 +14,9 @@ This package has helpers for AWS EC2.
 #### `swap`
 
 - `generate`: Generate and enable swap.
+
+### File
+
+#### `cloudwatch`
+
+- `agent`: Create CloudWatch agent config.
