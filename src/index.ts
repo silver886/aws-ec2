@@ -1,1 +1,1 @@
-console.log('Hello world');
+export * as init from './init/';

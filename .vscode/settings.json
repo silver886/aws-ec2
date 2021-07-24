@@ -3,6 +3,10 @@
         "**/node_modules/": true
     },
     "cSpell.words": [
-        "leasot"
+        "fallocate",
+        "leasot",
+        "mkswap",
+        "repos",
+        "swapon"
     ]
 }
