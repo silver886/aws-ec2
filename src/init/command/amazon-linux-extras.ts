@@ -1,7 +1,7 @@
 import * as ec2 from '@aws-cdk/aws-ec2';
 
 export function enable(topic: string): ec2.InitCommand {
-    return ec2.InitCommand.shellCommand(`amazon-linux-extras enable ${topic} -y`, {
+    return ec2.InitCommand.shellCommand(`amazon-linux-extras enable ${topic}`, {
         testCmd: `! grep -Fxq '[amzn2extra-${topic}]' /etc/yum.repos.d/amzn2-extras.repo`,
     });
 }
