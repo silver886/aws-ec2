@@ -8,7 +8,7 @@ export function enable(topic: string): ec2.InitCommand {
 
 export function install(topic: string, recommendPackage?: string): ec2.InitCommand {
     return ec2.InitCommand.shellCommand(`amazon-linux-extras install ${topic} -y`, {
-        testCmd: `! grep -Fxq '[amzn2extra-${topic}]' /etc/yum.repos.d/amzn2-extras.repo && ` +
-        `${recommendPackage ? `yum list installed | grep ${recommendPackage}` : 'true'}`,
+        testCmd: `! grep -Fxq '[amzn2extra-${topic}]' /etc/yum.repos.d/amzn2-extras.repo || ` +
+            `${recommendPackage ? `! $(yum list installed | grep -q ${recommendPackage})` : 'true'}`,
     });
 }
