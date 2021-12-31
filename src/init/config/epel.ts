@@ -1,9 +1,11 @@
-import * as ec2 from '@aws-cdk/aws-ec2';
+import {
+    aws_ec2 as cdkEc2,
+} from 'aws-cdk-lib';
 
 import * as command from '../command/';
 
-export function enable(): ec2.InitConfig {
-    return new ec2.InitConfig([
+export function enable(): cdkEc2.InitConfig {
+    return new cdkEc2.InitConfig([
         command.amazonLinuxExtras.install('epel', 'epel-release'),
     ]);
 }

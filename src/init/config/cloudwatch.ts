@@ -1,4 +1,6 @@
-import * as ec2 from '@aws-cdk/aws-ec2';
+import {
+    aws_ec2 as cdkEc2,
+} from 'aws-cdk-lib';
 
 import * as file from '../file/';
 
@@ -21,7 +23,7 @@ enum Ext {
     MSI = 'msi',
 }
 
-export function agent(arch: Arch, os: Os, obj: unknown): ec2.InitConfig {
+export function agent(arch: Arch, os: Os, obj: unknown): cdkEc2.InitConfig {
     let ext: Ext | null = null;
     switch (arch) {
         case Arch.X86_64:
@@ -55,26 +57,26 @@ export function agent(arch: Arch, os: Os, obj: unknown): ec2.InitConfig {
         // No default
     }
 
-    let initPackageGenerator: ((packageName: string, options?: ec2.NamedPackageOptions) => ec2.InitPackage) | null = null;
+    let initPackageGenerator: ((packageName: string, options?: cdkEc2.NamedPackageOptions) => cdkEc2.InitPackage) | null = null;
     switch (ext) {
         /* eslint-disable @typescript-eslint/unbound-method */
         case Ext.MSI:
-            initPackageGenerator = ec2.InitPackage.msi;
+            initPackageGenerator = cdkEc2.InitPackage.msi;
             break;
         case Ext.RPM:
-            initPackageGenerator = ec2.InitPackage.rpm;
+            initPackageGenerator = cdkEc2.InitPackage.rpm;
             break;
         /* eslint-enable @typescript-eslint/unbound-method */
         // No default
     }
 
-    const handle = new ec2.InitServiceRestartHandle();
-    return new ec2.InitConfig([
+    const handle = new cdkEc2.InitServiceRestartHandle();
+    return new cdkEc2.InitConfig([
         initPackageGenerator(`https://s3.amazonaws.com/amazoncloudwatch-agent/${os}/${arch}/latest/amazon-cloudwatch-agent.${ext}`, {
             serviceRestartHandles: [handle],
         }),
         file.cloudwatch.config(os, obj, [handle]),
-        ec2.InitService.enable('amazon-cloudwatch-agent', {
+        cdkEc2.InitService.enable('amazon-cloudwatch-agent', {
             serviceRestartHandle: handle,
         }),
     ]);

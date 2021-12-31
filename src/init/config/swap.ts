@@ -1,9 +1,11 @@
-import * as ec2 from '@aws-cdk/aws-ec2';
+import {
+    aws_ec2 as cdkEc2,
+} from 'aws-cdk-lib';
 
 import * as command from '../command/';
 
-export function generate(size: number): ec2.InitConfig {
-    return new ec2.InitConfig([
+export function generate(size: number): cdkEc2.InitConfig {
+    return new cdkEc2.InitConfig([
         command.swap.generate(size),
     ]);
 }

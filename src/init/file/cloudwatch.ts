@@ -1,6 +1,8 @@
-import * as ec2 from '@aws-cdk/aws-ec2';
+import {
+    aws_ec2 as cdkEc2,
+} from 'aws-cdk-lib';
 
-export function config(os: string, obj: unknown, serviceRestartHandles?: ec2.InitServiceRestartHandle[]): ec2.InitFile {
+export function config(os: string, obj: unknown, serviceRestartHandles?: cdkEc2.InitServiceRestartHandle[]): cdkEc2.InitFile {
     if (os !== 'amazon_linux' && os !== 'centos' && os !== 'redhat' && os !== 'suse' && os !== 'debian' && os !== 'ubuntu' && os !== 'oracle_linux' && os !== 'windows') throw new Error('OS must be `amazon_linux`, `centos`, `redhat`, `suse`, `debian`, `ubuntu`, `oracle_linux`, or `windows`.');
 
     let path = '';
@@ -21,5 +23,5 @@ export function config(os: string, obj: unknown, serviceRestartHandles?: ec2.Ini
         // No default
     }
 
-    return ec2.InitFile.fromString(path, JSON.stringify(obj), {serviceRestartHandles});
+    return cdkEc2.InitFile.fromString(path, JSON.stringify(obj), {serviceRestartHandles});
 }
