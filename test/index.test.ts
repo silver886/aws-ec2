@@ -1,11 +1,13 @@
-import '@aws-cdk/assert/jest';
-import * as cdk from '@aws-cdk/core';
+import {
+    App as cdkApp,
+} from 'aws-cdk-lib';
 
 import * as src from '../src/';
 
 describe('Access Point', () => {
     // GIVEN
-    const app = new cdk.App();
+    // eslint-disable-next-line new-cap
+    const app = new cdkApp();
 
     // WHEN
 
